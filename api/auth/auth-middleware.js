@@ -14,6 +14,8 @@ const restricted = (req, res, next) => {
           res.status(401).json({ message: "Token gecersizdir" });
         } else {
           req.decodeToken = decodeToken;
+
+          
           next();
         }
       });
@@ -22,6 +24,19 @@ const restricted = (req, res, next) => {
     next(error);
   }
 };
+const getToken = ((req, res, next) => {
+  try {
+    const token = req.headers["authorization"];
+    // JWT'yi doğrula
+    const decodedToken = jwt.verify(token, JWT_SECRET);
+    // Kullanıcının ID'sini talep nesnesine ekleyin
+    req.user_id = decodedToken.user_id;
+    next();
+  } catch (error) {
+    res.status(401).json({ message: 'Geçersiz token' });
+  }
+})
+
 const payloadCheck = function (req, res, next) {
   try {
     const { username, password } = req.body;
@@ -69,4 +84,4 @@ const userNameCheck = async function(req,res,next){
         next(error);
     }
 }
-module.exports = {loginPasswordCheck,userNameCheck,payloadCheck,restricted}
+module.exports = {loginPasswordCheck,userNameCheck,payloadCheck,restricted,getToken}

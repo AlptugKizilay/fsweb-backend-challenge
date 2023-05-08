@@ -21,7 +21,7 @@ exports.up = function (knex) {
     table.increments('comment_id').primary();
     table.integer('user_id').unsigned().references('user_id').inTable("users");
     table.integer('post_id').unsigned().references('post_id').inTable("posts");;
-    table.string('content').notNullable();
+    table.string('comment').notNullable();
     table.timestamps(true, true);
   })
   .createTable("likes", (table) => {

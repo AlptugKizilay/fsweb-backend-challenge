@@ -1,0 +1,35 @@
+const db = require("../../data/db-config");
+
+const getPosts = async function(){
+    const allPosts = await db("posts as p")
+                            .rightJoin("users as u","u.user_id","p.user_id")
+                            .select("p.post_id","p.content","u.user_id","u.username","p.created_at",)
+    return allPosts;
+}
+async function getPostById(post_id){
+    const post = await db("posts as p")
+                        .rightJoin("users as u","u.user_id","p.user_id")
+                        .select("u.user_id","u.username","p.post_id","p.content","p.like_count","p.created_at")
+                        .where("p.post_id",post_id).first();
+    const comments = await db("comments as c")
+                        .rightJoin("users as u","u.user_id","c.user_id")
+                        .select("c.*","u.username")
+                        .where("c.post_id",post_id);  
+    if (!post || post.length === 0) {
+        return [];
+    }                        
+    const postModel = post;
+    postModel.comments= comments
+    return postModel;
+}
+const getPostBy = async function(filter){
+    const post = await db("posts as p").where(filter).first();
+    return post;
+}
+const insertPost = async function(post){
+    const [insertedId] = await db("posts").insert(post);
+    return await getPostBy({post_id:insertedId})
+}
+
+module.exports = {insertPost,getPostBy,getPostById,getPosts}
+
