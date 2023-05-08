@@ -36,10 +36,13 @@ const payloadCheck = function (req, res, next) {
 };
 const userNameCheck = async function(req,res,next){
     try {
-     const {username} = req.body;
-     const user =await userModel.findUserBy({username:username});
-     if(user && user.id>0){
-         res.status(401).json({message:"username alınmış"});
+     const {username, email} = req.body;
+     const isUserName =await userModel.findUserBy({username:username});
+     const isUserEmail =await userModel.findUserBy({email:email})
+     if(isUserName){
+         res.status(401).json({message:"username was taken"});
+     }else if(isUserEmail){
+        res.status(401).json({message:"email was taken"});
      }
      else{
          next()
@@ -51,7 +54,7 @@ const userNameCheck = async function(req,res,next){
  const loginPasswordCheck = async function(req,res,next){
     try {
         const {username,password} = req.body;
-        const user = await userModel.getByFilter({username:username});
+        const user = await userModel.findUserBy({username:username});
         if(!user){
             res.status(404).json({message:"böyle bir user yok"});
         }else{

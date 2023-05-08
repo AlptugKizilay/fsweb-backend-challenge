@@ -18,6 +18,6 @@ async function findUserById(user_id){
 }
 const insertUser = async function(user){
     const [insertedId] = await db("users").insert(user);
-    return await findUserBy({id:insertedId})
+    return await findUserBy({user_id:insertedId})
 }
 module.exports = {findUsers,findUserBy,findUserById,insertUser}
