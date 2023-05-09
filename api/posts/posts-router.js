@@ -18,13 +18,13 @@ router.get("/:post_id",mw.restricted, (req, res, next) => {
       })
       .catch(next);
   });
-router.post("/add/:user_id",mw.restricted, checkUserId, payloadCheck,  async (req, res, next) => {
+router.post("/add",mw.restricted, payloadCheck,  async (req, res, next) => {
     try {
-    const userId =  req.params.user_id;
+      const user_id = await req.decodeToken.user_id;
     
       const model = {
         content: req.body.content,
-        user_id: userId       
+        user_id: user_id       
       };
       const insertedRecord = await Posts.insertPost(model);
       res.status(201).json(insertedRecord);
