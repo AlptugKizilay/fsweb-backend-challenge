@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const {payloadCheck, checkUserId} = require("./posts-middleware")
+const {payloadCheck, checkOwnPost} = require("./posts-middleware")
 const Posts = require("./posts-model");
 const mw = require("../auth/auth-middleware");
 
@@ -32,7 +32,7 @@ router.post("/add",mw.restricted, payloadCheck,  async (req, res, next) => {
       next(error);
     }
   });
-  router.delete('/del/:post_id', async (req, res, next) => {
+  router.delete('/del/:post_id',mw.restricted,checkOwnPost, async (req, res, next) => {
       let deleted = await Posts.getPostById(req.params.post_id);
       try {
         if (deleted) {

@@ -1,6 +1,7 @@
 const Posts = require("./posts-model");
 const { JWT_SECRET } = require("../secrets");
 const jwt = require("jsonwebtoken");
+const db = require("../../data/db-config");
 
 const payloadCheck = function (req, res, next) {
     
@@ -35,5 +36,26 @@ const checkUserId = (req, res, next) => {
       res.status(401).json({ error: error });
     }
   };
+const checkOwnPost = async(req, res, next) => {
+    const user_id = await req.decodeToken.user_id;
+    const requestPostId =parseInt(req.params.post_id);    
+  
+    try {        
+      const result = await db('posts').select('user_id').where('post_id', requestPostId).first();
+        
+      if (result) {
+        const postOwnerId = result.user_id;
+        if(postOwnerId === user_id ){
+          next();
+        }else{
+          res.status(401).json({error: "kullanıcı eşleşmedi", postOwnerId:postOwnerId, user_id:user_id })
+        }
+      } else {        
+        res.status(401).json({error: "Post sahibi bulunamadı" });
+      }
+    } catch (error) {
+      res.status(401).json({ error: "error" });
+    }
+  };
 
-module.exports = {payloadCheck,checkUserId}
+module.exports = {payloadCheck,checkUserId,checkOwnPost}
