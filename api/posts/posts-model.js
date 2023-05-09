@@ -22,14 +22,14 @@ async function getPostById(post_id){
     postModel.comments= comments
     return postModel;
 }
-const getPostBy = async function(filter){
-    const post = await db("posts as p").where(filter).first();
-    return post;
-}
+
 const insertPost = async function(post){
     const [insertedId] = await db("posts").insert(post);
-    return await getPostBy({post_id:insertedId})
+    return await getPostById(insertedId)
 }
+const remove = async function (post_id) {
+    return db('posts').where('post_id', post_id).del();
+  }
 
-module.exports = {insertPost,getPostBy,getPostById,getPosts}
+module.exports = {insertPost,getPostById,getPosts,remove}
 

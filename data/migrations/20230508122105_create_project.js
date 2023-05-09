@@ -20,15 +20,16 @@ exports.up = function (knex) {
   .createTable("comments", (table) => {
     table.increments('comment_id').primary();
     table.integer('user_id').unsigned().references('user_id').inTable("users");
-    table.integer('post_id').unsigned().references('post_id').inTable("posts");;
+    table.integer('post_id').unsigned().references('post_id').inTable("posts");
     table.string('comment').notNullable();
     table.timestamps(true, true);
   })
   .createTable("likes", (table) => {
     table.increments('like_id').primary();
-    table.integer('user_id').unsigned().references('user_id').inTable("users");;
-    table.integer('post_id').unsigned().references('post_id').inTable("posts");;
+    table.integer('user_id').unsigned().references('user_id').inTable("users");
+    table.integer('post_id').unsigned().references('post_id').inTable("posts");
     table.timestamps(true, true);
+    table.primary(['user_id', 'post_id'])
   })
 };
 

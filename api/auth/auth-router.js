@@ -4,6 +4,7 @@ const mw = require("./auth-middleware");
 const bcryptjs = require("bcryptjs");
 const userModel = require("../users/users-model");
 const jwt = require("jsonwebtoken");
+
 function generateToken(payload, expireTime) {
   return jwt.sign(payload, JWT_SECRET, { expiresIn: expireTime });
 }
@@ -21,12 +22,14 @@ router.post("/register", mw.payloadCheck, mw.userNameCheck, async (req, res, nex
     next(error);
   }
 });
-router.post('/login', mw.payloadCheck, mw.loginPasswordCheck, async (req, res) => {
+router.post('/login', mw.payloadCheck, mw.loginPasswordCheck, async (req, res, next) => {
    try {
+      const payloaded = await userModel.findUserByy({username:req.body.username});
       const payload = {
-        username:req.body.username
+        username:payloaded.username,
+        user_id:payloaded.user_id
       }
-      const token = generateToken(payload,"1d");
+      const token = generateToken(payloaded,"1d");
       res.json({
         message:`welcome, ${req.body.username}`,
         token:token

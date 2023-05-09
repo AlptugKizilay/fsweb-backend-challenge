@@ -1,4 +1,6 @@
 const Posts = require("./posts-model");
+const { JWT_SECRET } = require("../secrets");
+const jwt = require("jsonwebtoken");
 
 const payloadCheck = function (req, res, next) {
     
@@ -16,5 +18,22 @@ const payloadCheck = function (req, res, next) {
     }
     
 }
+const checkUserId = (req, res, next) => {
+    
+    const requestUserId =parseInt(req.params.user_id);
+    const token = req.headers.authorization;
+  
+    try {        
+        const decodedToken = jwt.verify(token, JWT_SECRET);
+        const loggedInUserId = decodedToken.user_id;
+      if (requestUserId === loggedInUserId) {
+        next();
+      } else {        
+        res.status(401).json({error: 'Yetkisiz işlem: Geçersiz kullanıcı kimliği'});
+      }
+    } catch (error) {
+      res.status(401).json({ error: error });
+    }
+  };
 
-module.exports = {payloadCheck}
+module.exports = {payloadCheck,checkUserId}

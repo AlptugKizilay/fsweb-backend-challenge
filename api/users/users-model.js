@@ -9,6 +9,10 @@ async function findUserBy(filter){
     const user = await db("users as u").where(filter).first();
     return user;
 }
+async function findUserByy(filter){
+    const user = await db("users as u").where(filter).first();
+    return user;
+}
 async function findUserById(user_id){
     const user = await db("users as u")
                         .leftJoin("posts as p","p.user_id","u.user_id")
@@ -20,4 +24,4 @@ const insertUser = async function(user){
     const [insertedId] = await db("users").insert(user);
     return await findUserBy({user_id:insertedId})
 }
-module.exports = {findUsers,findUserBy,findUserById,insertUser}
+module.exports = {findUsers,findUserBy,findUserById,insertUser,findUserByy}
