@@ -27,9 +27,9 @@ const restricted = (req, res, next) => {
 const getToken = ((req, res, next) => {
   try {
     const token = req.headers["authorization"];
-    // JWT'yi doğrula
+
     const decodedToken = jwt.verify(token, JWT_SECRET);
-    // Kullanıcının ID'sini talep nesnesine ekleyin
+
     req.user_id = decodedToken.user_id;
     next();
   } catch (error) {

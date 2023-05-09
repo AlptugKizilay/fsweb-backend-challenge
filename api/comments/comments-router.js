@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const Comments = require("./comments-model");
+const {payloadCheck} = require("./comments-middleware")
 const mw = require("../auth/auth-middleware");
 
-router.post("/:post_id/add/:user_id", mw.restricted,  async (req, res, next) => {
+router.post("/:post_id/:user_id", mw.restricted, payloadCheck,  async (req, res, next) => {
     try {
     const userId =  req.params.user_id;
     const postId =  req.params.post_id;

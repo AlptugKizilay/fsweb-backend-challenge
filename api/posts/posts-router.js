@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const {payloadCheck} = require("./posts-middleware")
 const Posts = require("./posts-model");
 const mw = require("../auth/auth-middleware");
 
@@ -17,7 +18,7 @@ router.get("/:post_id",mw.restricted, (req, res, next) => {
       })
       .catch(next);
   });
-router.post("/add/:user_id",mw.restricted,  async (req, res, next) => {
+router.post("/add/:user_id",mw.restricted, payloadCheck,  async (req, res, next) => {
     try {
     const userId =  req.params.user_id;
     
