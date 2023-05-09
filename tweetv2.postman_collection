@@ -1,0 +1,229 @@
+{
+	"info": {
+		"_postman_id": "69cddc64-c8fe-4fa7-a48c-111d8da4899a",
+		"name": "tweet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"alptugWT\", \"email\": \"alptug@wt.com\", \"password\": \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:9000/api/auth/register"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFscHR1ZyIsImlhdCI6MTY4MzY2MjkzMiwiZXhwIjoxNjgzNzQ5MzMyfQ.dEDWMbz9lc_jlVHgjV4JdDkW0LsKXPpNGaqQLlZyY4Y",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"alptugWT\", \"email\": \"alptug@wt.com\", \"password\": \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:9000/api/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "get post",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJ1c2VybmFtZSI6ImFscHR1Z1dUIiwiZW1haWwiOiJhbHB0dWdAd3QuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkRFZpVkpzMzBjZTFaOFFUT1l4UVMxZVBrM1ZOQzEwUW16Y2JSNUNyWnIwcmtXRW03V2NyZC4iLCJjcmVhdGVkX2F0IjoiMjAyMy0wNS0wOSAyMzoxMjo0MSIsInVwZGF0ZWRfYXQiOiIyMDIzLTA1LTA5IDIzOjEyOjQxIiwiaWF0IjoxNjgzNjc0MDE1LCJleHAiOjE2ODM3NjA0MTV9.nHc8xWcyb2yOwmpZjmfm2K8bXgpOP6jnnRJk0qzCx7w",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:9000/api/posts/"
+			},
+			"response": []
+		},
+		{
+			"name": "get post by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJ1c2VybmFtZSI6ImFscHR1Z1dUIiwiZW1haWwiOiJhbHB0dWdAd3QuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkRFZpVkpzMzBjZTFaOFFUT1l4UVMxZVBrM1ZOQzEwUW16Y2JSNUNyWnIwcmtXRW03V2NyZC4iLCJjcmVhdGVkX2F0IjoiMjAyMy0wNS0wOSAyMzoxMjo0MSIsInVwZGF0ZWRfYXQiOiIyMDIzLTA1LTA5IDIzOjEyOjQxIiwiaWF0IjoxNjgzNjc0MDE1LCJleHAiOjE2ODM3NjA0MTV9.nHc8xWcyb2yOwmpZjmfm2K8bXgpOP6jnnRJk0qzCx7w",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:9000/api/posts/1"
+			},
+			"response": []
+		},
+		{
+			"name": "add post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJ1c2VybmFtZSI6ImFscHR1Z1dUIiwiZW1haWwiOiJhbHB0dWdAd3QuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkRFZpVkpzMzBjZTFaOFFUT1l4UVMxZVBrM1ZOQzEwUW16Y2JSNUNyWnIwcmtXRW03V2NyZC4iLCJjcmVhdGVkX2F0IjoiMjAyMy0wNS0wOSAyMzoxMjo0MSIsInVwZGF0ZWRfYXQiOiIyMDIzLTA1LTA5IDIzOjEyOjQxIiwiaWF0IjoxNjgzNjc0MDE1LCJleHAiOjE2ODM3NjA0MTV9.nHc8xWcyb2yOwmpZjmfm2K8bXgpOP6jnnRJk0qzCx7w",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\":\"Her şey çok güzel olacak\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:9000/api/posts/add"
+			},
+			"response": []
+		},
+		{
+			"name": "del post",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJ1c2VybmFtZSI6ImFscHR1Z1dUIiwiZW1haWwiOiJhbHB0dWdAd3QuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkRFZpVkpzMzBjZTFaOFFUT1l4UVMxZVBrM1ZOQzEwUW16Y2JSNUNyWnIwcmtXRW03V2NyZC4iLCJjcmVhdGVkX2F0IjoiMjAyMy0wNS0wOSAyMzoxMjo0MSIsInVwZGF0ZWRfYXQiOiIyMDIzLTA1LTA5IDIzOjEyOjQxIiwiaWF0IjoxNjgzNjc0MDE1LCJleHAiOjE2ODM3NjA0MTV9.nHc8xWcyb2yOwmpZjmfm2K8bXgpOP6jnnRJk0qzCx7w",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:9000/api/posts/del/17"
+			},
+			"response": []
+		},
+		{
+			"name": "add comment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJ1c2VybmFtZSI6ImFscHR1Z1dUIiwiZW1haWwiOiJhbHB0dWdAd3QuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkRFZpVkpzMzBjZTFaOFFUT1l4UVMxZVBrM1ZOQzEwUW16Y2JSNUNyWnIwcmtXRW03V2NyZC4iLCJjcmVhdGVkX2F0IjoiMjAyMy0wNS0wOSAyMzoxMjo0MSIsInVwZGF0ZWRfYXQiOiIyMDIzLTA1LTA5IDIzOjEyOjQxIiwiaWF0IjoxNjgzNjc0MDE1LCJleHAiOjE2ODM3NjA0MTV9.nHc8xWcyb2yOwmpZjmfm2K8bXgpOP6jnnRJk0qzCx7w",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\":\"Harika bir yorum daha.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:9000/api/comments/18"
+			},
+			"response": []
+		},
+		{
+			"name": "like",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJ1c2VybmFtZSI6ImFscHR1Z1dUIiwiZW1haWwiOiJhbHB0dWdAd3QuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkRFZpVkpzMzBjZTFaOFFUT1l4UVMxZVBrM1ZOQzEwUW16Y2JSNUNyWnIwcmtXRW03V2NyZC4iLCJjcmVhdGVkX2F0IjoiMjAyMy0wNS0wOSAyMzoxMjo0MSIsInVwZGF0ZWRfYXQiOiIyMDIzLTA1LTA5IDIzOjEyOjQxIiwiaWF0IjoxNjgzNjc0MDE1LCJleHAiOjE2ODM3NjA0MTV9.nHc8xWcyb2yOwmpZjmfm2K8bXgpOP6jnnRJk0qzCx7w",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:9000/api/likes/18"
+			},
+			"response": []
+		},
+		{
+			"name": "get me",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJ1c2VybmFtZSI6ImFscHR1Z1dUIiwiZW1haWwiOiJhbHB0dWdAd3QuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkRFZpVkpzMzBjZTFaOFFUT1l4UVMxZVBrM1ZOQzEwUW16Y2JSNUNyWnIwcmtXRW03V2NyZC4iLCJjcmVhdGVkX2F0IjoiMjAyMy0wNS0wOSAyMzoxMjo0MSIsInVwZGF0ZWRfYXQiOiIyMDIzLTA1LTA5IDIzOjEyOjQxIiwiaWF0IjoxNjgzNjc0MDE1LCJleHAiOjE2ODM3NjA0MTV9.nHc8xWcyb2yOwmpZjmfm2K8bXgpOP6jnnRJk0qzCx7w",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:9000/api/users/me"
+			},
+			"response": []
+		}
+	]
+}
