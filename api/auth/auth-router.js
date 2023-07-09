@@ -24,7 +24,7 @@ router.post("/register", mw.payloadCheck, mw.userNameCheck, async (req, res, nex
 });
 router.post('/login', mw.payloadCheck, mw.loginPasswordCheck, async (req, res, next) => {
    try {
-      const payloaded = await userModel.findUserBy({username:req.body.username});
+      const payloaded = await userModel.findUserTkBy({username:req.body.username});
     
       const token = generateToken(payloaded,"1d");
       res.json({

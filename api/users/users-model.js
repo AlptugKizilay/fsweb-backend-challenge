@@ -9,6 +9,10 @@ async function findUserBy(filter){
     const user = await db("users as u").where(filter).first();
     return user;
 }
+async function findUserTkBy(filter){
+    const user = await db("users as u").select("u.user_id","u.username", "u.email").where(filter).first();
+    return user;
+}
 
 async function findUserById(user_id){
     const user = await db("users as u")
@@ -21,4 +25,4 @@ const insertUser = async function(user){
     const [insertedId] = await db("users").insert(user);
     return await findUserBy({user_id:insertedId})
 }
-module.exports = {findUsers,findUserBy,findUserById,insertUser}
+module.exports = {findUsers,findUserBy,findUserById,insertUser,findUserTkBy}
